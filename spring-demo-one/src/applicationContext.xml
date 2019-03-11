@@ -6,11 +6,30 @@
     http://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
-	
-    <!-- Define Beans -->
- 	<bean id="myCricketCoach"
- 		class="com.nila2.springdemo.TrackCoach">	 
+<!-- Load properties file -->
+	<context:property-placeholder location="classpath:sports.properties"/>
+    <!-- Define your beans here -->
+    
+    <!-- define the dependency -->
+    <bean id="myFortuneService"
+    		class="com.nila2.springdemo.HappyFortuneService">
+    	</bean>
+    
+ 	<bean id="myCoach"
+ 		class="com.nila2.springdemo.TrackCoach">	
+ 		
+ 		<!-- set up constructor injection -->
+ 		<constructor-arg ref="myFortuneService" />
  	</bean>
+
+    <bean id="myBaseballCoach"
+        class="com.nila2.springdemo.BaseballCoach"> 
+        
+        <!-- set up setter injection -->
+    <property name="fortuneService" ref="myFortuneService" />
+         <property name="emailAddress" value="${foo.email}" />
+         <property name="team" value="${foo.team}" />
+    </bean>
     
 </beans>
 
