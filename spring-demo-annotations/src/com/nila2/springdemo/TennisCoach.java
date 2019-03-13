@@ -8,62 +8,38 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-
 public class TennisCoach implements Coach {
 
 	@Autowired
 	@Qualifier("randomFortuneService")
-	private FortuneService fortuneService; //field injection
+	private FortuneService fortuneService;
 	
-	//define a default constructor
+	// define a default constructor
 	public TennisCoach() {
-		System.out.println(">>TennisCoach: inside default constructor");
+		System.out.println(">> TennisCoach: inside default constructor");
 	}
-	
-	//define init method
+
+	// define my init method
 	@PostConstruct
-	public void setInitmethod() {
-		System.out.println(">>TennisCoach: inside setInitmethod() meethod-- @PostConstruct ");
+	public void doMyStartupStuff() {
+		System.out.println(">> TennisCoach: inside of doMyStartupStuff()");
 	}
 	
-	
-	
-	//define destroy method
-	
+	// define my destroy method
 	@PreDestroy
-	public void setdestroymethod() {
-		System.out.println(">>TennisCoach: inside setDestroymethod() meethod-- @PreDestroy ");
+	public void doMyCleanupStuff() {
+		System.out.println(">> TennisCoach: inside of doMyCleanupStuff()");		
 	}
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	/*
-	@Autowired
-	public void setAnyMethod(FortuneService theFortuneService) {
-		System.out.println(">>TennisCoach: inside setAnyMethod() method--autowired for method injection");
-		fortuneService=theFortuneService;
-	}
-	@Autowired
-	public TennisCoach(FortuneService theFortuneService) {
-		fortuneService=theFortuneService;
-	} */
-	
-	
+	@Override
 	public String getDailyWorkOut() {
-	
-		return "Inversion of Control with Java Annotations-- inside getDailyWorkOut() method ";
+		return "Practice your backhand volley";
 	}
 
 	@Override
 	public String getDailyFortune() {
-		// 
 		return fortuneService.getFortune();
 	}
 

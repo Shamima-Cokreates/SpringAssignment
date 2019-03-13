@@ -1,12 +1,12 @@
 package com.nila2.springdemo;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class AnnotationDemoAppMain{
+public class JavaConfigDemoAppMain {
 
 	public static void main(String[] args) {
-		// Read spring config file
-		ClassPathXmlApplicationContext context= new ClassPathXmlApplicationContext("applicationContext.xml");
+		// Read spring config java class
+		AnnotationConfigApplicationContext context= new AnnotationConfigApplicationContext(SportConfig.class);
 		// Get bean from Spring container
 		Coach theCoach=context.getBean("tennisCoach",Coach.class);
 		// Call method on bean
