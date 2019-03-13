@@ -1,10 +1,14 @@
 package com.nila2.springdemo;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
+
 public class TennisCoach implements Coach {
 
 	@Autowired
@@ -15,6 +19,31 @@ public class TennisCoach implements Coach {
 	public TennisCoach() {
 		System.out.println(">>TennisCoach: inside default constructor");
 	}
+	
+	//define init method
+	@PostConstruct
+	public void setInitmethod() {
+		System.out.println(">>TennisCoach: inside setInitmethod() meethod-- @PostConstruct ");
+	}
+	
+	
+	
+	//define destroy method
+	
+	@PreDestroy
+	public void setdestroymethod() {
+		System.out.println(">>TennisCoach: inside setDestroymethod() meethod-- @PreDestroy ");
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/*
 	@Autowired
 	public void setAnyMethod(FortuneService theFortuneService) {
